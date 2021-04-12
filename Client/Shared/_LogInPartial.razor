@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+@code {
+    @if (SignInManager.IsSignedIn(User))
+        {
+
+    <li style="float: right;">
+        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button style="border: none; background: none; color:rgb(255, 84, 110); font-weight:900; font-size: 15px;" type="submit"> <img style="height: 20px;" src="~/img/TopMenu/padlock-closed-icon.png" /> Logout</button>
+        </form>
+    </li>
+
+    <li>
+        <a style="color: rgb(107,255,146); font-size: 15px;" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hejsa @User.Identity.Name!</a>
+    </li>
+        }
+        else
+{
+        <li>
+            <a style="color: #9489fb; font-weight: 900; font-size: 15px;" asp-area="Identity" asp-page="/Account/Register"><img src="~/img/TopMenu/Register-icon.png" /> Register</a>
+        </li>
+        <li>
+            <a style="color:#abf558; font-size: 15px;" asp-area="Identity" asp-page="/Account/Login"><img src="~/img/TopMenu/padlock-open-icon.png" /> Login</a>
+        </li>
+}
+}
